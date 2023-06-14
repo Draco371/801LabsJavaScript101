@@ -1,0 +1,96 @@
+body {
+    background-color: black;
+    color:lime;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+button {
+    background-color: black;
+    color: lime;
+    border-style: solid;
+    border-color: purple;
+    border-width: 2px;
+    transition-duration: 200ms;
+    transition-property: all;
+    font-size: inherit;
+}
+
+button:hover,
+button:focus {
+    background-color: #333;
+    border-color: blue;
+    outline: none;
+}
+
+button:active {
+    color: white;
+    border-color: red;
+}
+
+textarea,
+input,
+select {
+    background-color: transparent;
+    color: inherit;
+    border: 2px solid #999;
+    font-size: inherit;
+}
+
+label > * {
+    vertical-align: middle;
+}
+
+#grid {
+    background-image: url('./grid.png');
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin: auto;
+}
+
+.spaceship {
+    background-image: url('./spaceship.png');
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.draco{
+    background-color: rgb(128, 20, 128);
+}
+
+.carina {
+    background-color: #b93c65;
+}
+
+.admiral {
+    background-color: blue;
+}
+
+.x0 { left: 0px;}
+.x1 { left: 50px;}
+.x2 { left: 100px;}
+.x3 { left: 150px;}
+.x4 { left: 200px;}
+.x5 { left: 250px;}
+.x6 { left: 300px;}
+.x7 { left: 350px;}
+.x8 { left: 400px;}
+.x9 { left: 450px;}
+
+.y0 { top: 0px;}
+.y1 { top: 50px;}
+.y2 { top: 100px;}
+.y3 { top: 150px;}
+.y4 { top: 200px;}
+.y5 { top: 250px;}
+.y6 { top: 300px;}
+.y7 { top: 350px;}
+.y8 { top: 400px;}
+.y9 { top: 450px;}
+
+.up {transform: rotate(-90deg);}
+.left {transform: rotate(-180deg);}
+.down {transform: rotate(-270deg);}
+.right {transform: rotate(0deg);}
