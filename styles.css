@@ -68,6 +68,12 @@ label > * {
     background-color: blue;
 }
 
+.bee {
+    background-color: yellow;
+    background-image: url('./bee.png');
+    background-size: contain;
+}
+
 .x0 { left: 0px;}
 .x1 { left: 50px;}
 .x2 { left: 100px;}

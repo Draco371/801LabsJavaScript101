@@ -1,8 +1,9 @@
 var outputElement = document.getElementById('output')
 var goatForm = document.getElementById('goat-form')
-var inputElement = document.getElementById('input')
 var inputElementA = document.getElementById('inputA')
+var inputElementB = document.getElementById('inputB')
 var inputElementC = document.getElementById('inputC')
+var inputElementD = document.getElementById('inputD')
 var gridElement = document.getElementById('grid')
 
 var dracoShip = {
@@ -23,11 +24,18 @@ var admiralShip = {
     x: 2,
     y: 1
 }
+var beeShip = {
+    name: 'bee',
+    direction: 'right',
+    x: 4,
+    y: 0,
+}
 
 var spaceships = [
     dracoShip,
     carinaShip,
-    admiralShip
+    admiralShip,
+    beeShip,
 ]
 var gridSize = 10
 var moveForward = function(ship){
@@ -99,13 +107,15 @@ var goatFormSubmitHandler = function(submitEvent){
     // console.log('What is submit event?', submitEvent)
     // This prevents the form from submitting and refreshing the page.
     submitEvent.preventDefault()
-    var message = inputElement.value.trim()
-    outputElement.innerText = `Your input was "${message}"`
-    processInput(message, dracoShip)
-    updateAllSpaceships()
-    processInput(message, admiralShip)
-    updateAllSpaceships()
-    processInput(message, carinaShip)
+    var instructionsA = inputElementA.value.trim()
+    var instructionsB = inputElementB.value.trim()
+    var instructionsC = inputElementC.value.trim()
+    var instructionsD = inputElementD.value.trim()
+    outputElement.innerText = `Your input was "${instructionsA}"`
+    processInput(instructionsA, admiralShip)
+    processInput(instructionsB, beeShip)
+    processInput(instructionsC, carinaShip)
+    processInput(instructionsD, dracoShip)
     updateAllSpaceships()
 }
 
