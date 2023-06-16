@@ -76,6 +76,7 @@ label > * {
 
 .elephont {
     background-color: #666;
+    background-image: url('./elephont.png');
 }
 
 .x0 { left: 0px;}
