@@ -6,6 +6,33 @@ var inputElementC = document.getElementById('inputC')
 var inputElementD = document.getElementById('inputD')
 var gridElement = document.getElementById('grid')
 
+var compareShips = function(a, b) {
+    console.log(`a: ${a.name}, b: ${b.name}`)
+    if(a.x === b.x && a.y === b.y) {
+        // console.log('collision')
+        if(Math.random() > 0.5){
+            a.expired = true;
+            console.log(`${a.name} exploded`)
+        } else {
+            b.expired = true;
+            console.log(`${b.name} exploded`)
+        }
+    } else {
+        console.log('No collision occured')
+    }
+}
+
+var compareList = function (list, compareCallback) {
+    var size = list.length;
+    for (let indexA = 0; indexA < (size - 1); indexA++) {
+        for (let indexB = indexA + 1; indexB < size; indexB++) {
+            let a = list[indexA];
+            let b = list[indexB];
+            compareCallback(a, b);
+        }    
+    }
+}
+
 var dracoShip = {
     name: 'draco',
     direction: 'left',
@@ -27,17 +54,24 @@ var admiralShip = {
 var beeShip = {
     name: 'bee',
     direction: 'right',
-    x: 4,
+    x: 5,
     y: 0,
 }
 
 var spaceships = [
-    dracoShip,
-    carinaShip,
     admiralShip,
     beeShip,
-]
-var gridSize = 10
+    carinaShip,
+    dracoShip,
+];
+
+var expiredFilter = function(ship){return !ship.expired;};
+var processCollisions = function(){
+    compareList(spaceships, compareShips);
+    spaceships = spaceships.filter(expiredFilter);
+};
+
+var gridSize = 10;
 var moveForward = function(ship){
     if(ship.direction === 'up'){
         ship.y -= 1
@@ -50,36 +84,36 @@ var moveForward = function(ship){
     }
     ship.x = (ship.x + gridSize) % gridSize
     ship.y = (ship.y + gridSize) % gridSize
-}
+};
 
 var turnRightMap = {
     up: 'right',
     right: 'down',
     down: 'left',
     left: 'up'
-}
+};
 var turnRight = function(ship){
-    ship.direction = turnRightMap[ship.direction]
-}
+    ship.direction = turnRightMap[ship.direction];
+};
 
 var turnLeftMap = {
     up: 'left',
     right: 'up',
     down: 'right',
     left: 'down'
-}
+};
 var turnLeft = function(ship){
-    ship.direction = turnLeftMap[ship.direction]
-}
+    ship.direction = turnLeftMap[ship.direction];
+};
 
 var displaySpaceship = function(ship){
-    return `<div class="spaceship ${ship.name} x${ship.x} y${ship.y} ${ship.direction}"></div>`
-}
+    return `<div class="spaceship ${ship.name} x${ship.x} y${ship.y} ${ship.direction}"></div>`;
+};
 
-var updateAllSpaceships = function(){
-    var arrayOfHTMLStrings = spaceships.map(displaySpaceship)
-    gridElement.innerHTML = arrayOfHTMLStrings.join('')
-}
+var displayAllSpaceships = function(){
+    var arrayOfHTMLStrings = spaceships.map(displaySpaceship);
+    gridElement.innerHTML = arrayOfHTMLStrings.join('');
+};
 
 var insturctionMap = {
     A: moveForward,
@@ -116,10 +150,11 @@ var goatFormSubmitHandler = function(submitEvent){
     processInput(instructionsB, beeShip)
     processInput(instructionsC, carinaShip)
     processInput(instructionsD, dracoShip)
-    updateAllSpaceships()
+    processCollisions()
+    displayAllSpaceships()
 }
 
 goatForm.addEventListener('submit', goatFormSubmitHandler)
 
-updateAllSpaceships()
+displayAllSpaceships()
 
