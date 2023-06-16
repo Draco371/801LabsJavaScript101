@@ -74,6 +74,10 @@ label > * {
     background-size: contain;
 }
 
+.elephont {
+    background-color: #666;
+}
+
 .x0 { left: 0px;}
 .x1 { left: 50px;}
 .x2 { left: 100px;}

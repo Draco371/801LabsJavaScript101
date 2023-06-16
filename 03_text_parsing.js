@@ -1,24 +1,19 @@
 var outputElement = document.getElementById('output')
 var goatForm = document.getElementById('goat-form')
-var inputElementA = document.getElementById('inputA')
-var inputElementB = document.getElementById('inputB')
-var inputElementC = document.getElementById('inputC')
-var inputElementD = document.getElementById('inputD')
 var gridElement = document.getElementById('grid')
+var inputHolderElement = document.getElementById('input-holder')
 
 var compareShips = function(a, b) {
-    console.log(`a: ${a.name}, b: ${b.name}`)
     if(a.x === b.x && a.y === b.y) {
-        // console.log('collision')
+        console.log(`a: ${a.name}, b: ${b.name}`)
         if(Math.random() > 0.5){
             a.expired = true;
-            console.log(`${a.name} exploded`)
+            console.log(`${a.name} exploded`) 
         } else {
             b.expired = true;
             console.log(`${b.name} exploded`)
         }
     } else {
-        console.log('No collision occured')
     }
 }
 
@@ -58,11 +53,19 @@ var beeShip = {
     y: 0,
 }
 
+var elephont = {
+    name: 'elephont',
+    direction: 'up',
+    x: 2,
+    y: 7,
+}
+
 var spaceships = [
     admiralShip,
     beeShip,
     carinaShip,
     dracoShip,
+    elephont,
 ];
 
 var expiredFilter = function(ship){return !ship.expired;};
@@ -115,6 +118,25 @@ var displayAllSpaceships = function(){
     gridElement.innerHTML = arrayOfHTMLStrings.join('');
 };
 
+var buildFormInput = function(ship){
+    return `
+    <div id="input-holder-${ship.name}">
+        <label>
+            <span>${ship.name}'s Ship's control panel</span>
+            <textarea 
+                id="input-${ship.name}"
+                rows="1" 
+                cols="33"
+            >A</textarea>
+        </label>
+    </div>`;
+};
+
+var buildAllFormInputs = function(){
+    var arrayOfHTMLStrings = spaceships.map(buildFormInput);
+    inputHolderElement.innerHTML = arrayOfHTMLStrings.join('');
+};
+
 var insturctionMap = {
     A: moveForward,
     L: turnLeft,
@@ -137,24 +159,25 @@ var processInput = function(inputString, ship){
     })
 }
 
+var processFormInputs = function(){
+    spaceships.forEach(function(ship){
+        var inputElement = document.getElementById(`input-${ship.name}`)
+        var instructions = inputElement.value.trim()
+        processInput(instructions, ship)
+    })
+}
+
 var goatFormSubmitHandler = function(submitEvent){
     // console.log('What is submit event?', submitEvent)
     // This prevents the form from submitting and refreshing the page.
     submitEvent.preventDefault()
-    var instructionsA = inputElementA.value.trim()
-    var instructionsB = inputElementB.value.trim()
-    var instructionsC = inputElementC.value.trim()
-    var instructionsD = inputElementD.value.trim()
-    outputElement.innerText = `Your input was "${instructionsA}"`
-    processInput(instructionsA, admiralShip)
-    processInput(instructionsB, beeShip)
-    processInput(instructionsC, carinaShip)
-    processInput(instructionsD, dracoShip)
+    processFormInputs()
     processCollisions()
     displayAllSpaceships()
 }
 
 goatForm.addEventListener('submit', goatFormSubmitHandler)
 
+buildAllFormInputs()
 displayAllSpaceships()
 
