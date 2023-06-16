@@ -42,7 +42,7 @@ label > * {
 }
 
 #grid {
-    background-image: url('./grid.png');
+    background-image: url('./images/grid.png');
     width: 500px;
     height: 500px;
     position: relative;
@@ -50,7 +50,7 @@ label > * {
 }
 
 .spaceship {
-    background-image: url('./spaceship.png');
+    background-image: url('./images/spaceship.png');
     width: 50px;
     height: 50px;
     position: absolute;
@@ -70,13 +70,13 @@ label > * {
 
 .bee {
     background-color: yellow;
-    background-image: url('./bee.png');
+    background-image: url('./images/bee.png');
     background-size: contain;
 }
 
 .elephont {
     background-color: #666;
-    background-image: url('./elephont.png');
+    background-image: url('./images/elephont.png');
 }
 
 .x0 { left: 0px;}
