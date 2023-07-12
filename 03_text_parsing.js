@@ -29,45 +29,7 @@ var compareList = function (list, compareCallback) {
     }
 }
 
-var dracoShip = {
-    name: 'draco',
-    direction: 'left',
-    x: 2,
-    y: 5
-}
-var carinaShip = {
-    name: 'carina',
-    direction: 'up',
-    x: 7,
-    y: 9
-}
-var admiralShip = {
-    name: 'admiral',
-    direction: 'down',
-    x: 2,
-    y: 1
-}
-var beeShip = {
-    name: 'bee',
-    direction: 'right',
-    x: 5,
-    y: 0,
-}
-
-var elephont = {
-    name: 'elephont',
-    direction: 'up',
-    x: 2,
-    y: 7,
-}
-
-var spaceships = [
-    admiralShip,
-    beeShip,
-    carinaShip,
-    dracoShip,
-    elephont,
-];
+var spaceships = getFormation('default')
 
 var expiredFilter = function(ship){return !ship.expired;};
 var processCollisions = function(){
@@ -120,6 +82,8 @@ var displayAllSpaceships = function(){
 };
 
 var buildFormInput = function(ship){
+    var inputElement = document.getElementById(`input-${ship.name}`)
+    var value = inputElement?.value?.trim() || ''
     return `
     <div id="input-holder-${ship.name}">
         <label>
@@ -128,7 +92,7 @@ var buildFormInput = function(ship){
                 id="input-${ship.name}"
                 rows="1" 
                 cols="33"
-            >A</textarea>
+            >${value}</textarea>
         </label>
     </div>`;
 };
@@ -176,6 +140,7 @@ var goatFormSubmitHandler = function(submitEvent){
     processFormInputs()
     processCollisions()
     displayAllSpaceships()
+    buildAllFormInputs()
 }
 
 goatForm.addEventListener('submit', goatFormSubmitHandler)
