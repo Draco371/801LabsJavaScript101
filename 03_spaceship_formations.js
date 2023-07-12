@@ -1,18 +1,6 @@
 var formationMap = {
     default: [
         {
-            name: 'draco',
-            direction: 'left',
-            x: 2,
-            y: 5
-        },
-        {
-            name: 'carina',
-            direction: 'up',
-            x: 7,
-            y: 9
-        },
-        {
             name: 'admiral',
             direction: 'down',
             x: 2,
@@ -23,6 +11,18 @@ var formationMap = {
             direction: 'right',
             x: 5,
             y: 0,
+        },
+        {
+            name: 'carina',
+            direction: 'up',
+            x: 7,
+            y: 9
+        }, 
+        {
+            name: 'draco',
+            direction: 'left',
+            x: 2,
+            y: 5
         },
         {
             name: 'elephont',
@@ -65,18 +65,6 @@ var formationMap = {
     ],
     tournament: [
         {
-            "name": "draco",
-            "direction": "right",
-            "x": 1,
-            "y": 0
-        },
-        {
-            "name": "carina",
-            "direction": "left",
-            "x": 8,
-            "y": 0
-        },
-        {
             "name": "admiral",
             "direction": "right",
             "x": 0,
@@ -86,6 +74,18 @@ var formationMap = {
             "name": "bee",
             "direction": "left",
             "x": 9,
+            "y": 0
+        },
+        {
+            "name": "carina",
+            "direction": "left",
+            "x": 8,
+            "y": 0
+        },
+        {
+            "name": "draco",
+            "direction": "right",
+            "x": 1,
             "y": 0
         },
         {
