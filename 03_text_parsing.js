@@ -2,6 +2,7 @@ var outputElement = document.getElementById('output')
 var goatForm = document.getElementById('goat-form')
 var gridElement = document.getElementById('grid')
 var inputHolderElement = document.getElementById('input-holder')
+var resetButtonElement = document.getElementById('reset-button')
 
 var compareShips = function(a, b) {
     if(a.x === b.x && a.y === b.y) {
@@ -178,6 +179,11 @@ var goatFormSubmitHandler = function(submitEvent){
 
 goatForm.addEventListener('submit', goatFormSubmitHandler)
 
+var resetState = function(){
+    window.location.reload()
+}
+
+resetButtonElement.addEventListener('click', resetState)
 buildAllFormInputs()
 displayAllSpaceships()
 
