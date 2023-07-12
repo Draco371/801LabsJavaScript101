@@ -155,16 +155,17 @@ var handleInstruction = function(instructionCode, ship){
 
 var processInput = function(inputString, ship){
     var instructions = inputString.split('')
-    instructions.forEach(function(instructionCode){
-        handleInstruction(instructionCode, ship)
-    })
+    var currentInstruction = instructions.shift()
+    handleInstruction(currentInstruction, ship)
+    return instructions.join('')
 }
 
 var processFormInputs = function(){
     spaceships.forEach(function(ship){
         var inputElement = document.getElementById(`input-${ship.name}`)
         var instructions = inputElement.value.trim()
-        processInput(instructions, ship)
+        var newInstructions = processInput(instructions, ship)
+        inputElement.value = newInstructions
     })
 }
 
